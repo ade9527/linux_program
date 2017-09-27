@@ -1,0 +1,27 @@
+项目 协议
+
+协议格式:
+	协议头(2 bytes)+长度（2 bytes）+数据体(n bytes);
+	长度 = 数据体长度；
+	包裹长度 = 2 + 2 + n；
+
+登陆协议：
+	客户端：1000(2 bytes) + len(2 bytes) + 帐号(10 bytes) + 密码(10 bytes);
+	服务端：1000(2 bytes) + len(2 bytes) + 是否成功(1 bytes) (1 成功，0 失败);
+
+注册协议：
+	客户端：1001(2 bytes) + len(2 bytes) + 帐号(10 bytes) + 密码(10 bytes);
+	服务端：1001(2 bytes) + len(2 bytes) + 是否成功(1 bytes) (1 成功，0 失败);
+
+在线好友信息协议：
+	服务器：1002(2 bytes) + len(2 bytes) + 账户(10 bytes) + 好友信息(sizeof(struct sockaddr_in));
+
+
+好友下线信息协议：
+	服务器：1003(2 bytes) + len(2 bytes) + 好友信息(10 bytes);
+
+心跳协议：
+	客户端：1004(2 bytes) + len(2 bytes) + 无(0 bytes);
+	服务器只接收心跳包；
+	
+

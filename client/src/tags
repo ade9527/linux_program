@@ -1,0 +1,58 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+GETCH	menu.c	5;"	d	file:
+GETCH	tcptreat.c	7;"	d	file:
+LOGIN_DATA	common.h	11;"	d
+OFFLINE_DATA	common.h	14;"	d
+ONLINE_DATA	common.h	13;"	d
+PANT_DATA	common.h	15;"	d
+REGISTER_DATA	common.h	12;"	d
+SER_PORT	common.h	9;"	d
+_CHAT_H	chatwindow/chat.h	2;"	d
+_CLIENT_H	client.h	2;"	d
+_COMMON_H	common.h	2;"	d
+_MENU_H	menu.h	2;"	d
+_TCPTREAT_H	tcptreat.h	2;"	d
+_UDP_H	udp.h	2;"	d
+account	common.h	/^	char account[10];$/;"	m	struct:friends
+add_online	tcptreat.c	/^void add_online(struct protocol *datum)$/;"	f
+apply_register	tcptreat.c	/^int apply_register(int tcpfd)$/;"	f
+bind_udp_port	udp.c	/^void bind_udp_port(int tcpfd, int udpfd)$/;"	f
+client	client.c	/^int client()$/;"	f
+create_chat	udp.c	/^void create_chat(int udpfd)		\/\/tcpfd 暂时$/;"	f
+data	common.h	/^	char data[1020];$/;"	m	struct:protocol
+del_online	tcptreat.c	/^void del_online(struct protocol *datum)  $/;"	f
+dfaddr	chatwindow/chat.h	/^	struct sockaddr_in dfaddr;$/;"	m	struct:forkdata	typeref:struct:forkdata::sockaddr_in
+dfaddr	common.h	/^	struct sockaddr_in dfaddr;	\/\/ip port$/;"	m	struct:friends	typeref:struct:friends::sockaddr_in
+dfaddr	common.h	/^	struct sockaddr_in dfaddr;$/;"	m	struct:forkdata	typeref:struct:forkdata::sockaddr_in
+dfname	chatwindow/chat.h	/^	char dfname[10];$/;"	m	struct:forkdata
+dfname	common.h	/^	char dfname[10];$/;"	m	struct:forkdata
+display_menu	menu.c	/^void display_menu(int* fd)$/;"	f
+forkdata	chatwindow/chat.h	/^struct forkdata$/;"	s
+forkdata	common.h	/^struct forkdata$/;"	s
+frhead	client.h	/^struct friends* frhead = NULL;$/;"	v	typeref:struct:friends
+friends	common.h	/^struct friends				\/\/在线好友信息$/;"	s
+head	common.h	/^	short head;$/;"	m	struct:protocol
+len	common.h	/^	short len;$/;"	m	struct:protocol
+login_tag	tcptreat.c	/^static int login_tag = 0;$/;"	v	file:
+main	chatwindow/chat.c	/^int main()$/;"	f
+main	client.c	/^int main()$/;"	f
+myaccount	client.h	/^char myaccount[10];$/;"	v
+myname	chatwindow/chat.h	/^	char myname[10];$/;"	m	struct:forkdata
+myname	common.h	/^	char myname[10];$/;"	m	struct:forkdata
+next	common.h	/^	struct friends* next;$/;"	m	struct:friends	typeref:struct:friends::friends
+print_friends	menu.c	/^void print_friends()$/;"	f
+protocol	common.h	/^struct protocol				\/\/协议结构体$/;"	s
+read_data	tcptreat.c	/^int read_data(int tcpfd)$/;"	f
+register_tag	tcptreat.c	/^static int register_tag = 0;$/;"	v	file:
+send_pant	tcptreat.c	/^void send_pant(int tcpfd)$/;"	f
+sig_routine	client.c	/^static void sig_routine(int signo)$/;"	f	file:
+success_login	menu.c	/^int success_login(int udpfd)$/;"	f
+tag	chatwindow/chat.h	/^	char tag;$/;"	m	struct:forkdata
+tag	common.h	/^	char tag;$/;"	m	struct:forkdata
+udp_read	udp.c	/^void udp_read(int udpfd)$/;"	f
+user_login	tcptreat.c	/^int user_login(int tcpfd, int udpfd)$/;"	f

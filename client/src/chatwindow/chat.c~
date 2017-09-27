@@ -1,0 +1,126 @@
+#include "chat.h"
+
+int main()
+{
+	int udpfd = 0;
+	int ret = 0;
+	int readfd = 0;
+	char buf[1024] = {0};
+	int len = 0;
+	
+	fd_set rset, set;
+	int maxfd;
+	int nfound = 0;
+
+	struct forkdata forkbuf = {0};
+	struct sockaddr_in newaddr = {0};
+	
+	printf("socket...\n");
+	udpfd = socket(AF_INET, SOCK_DGRAM, 0);
+	if(udpfd == -1)
+	{
+		printf("udp socket error\n");
+		return -1;
+	}
+	
+	usleep(200);
+	readfd = open("chatdata", O_RDONLY);
+
+	ret = read(readfd, &forkbuf, sizeof(forkbuf));
+	if(ret == -1)
+	{
+		printf("read error\n");
+		return -1;
+	}
+	close(readfd);
+	printf("tag %c   myname %s   dfname %s  \n", forkbuf.tag, forkbuf.myname, forkbuf.dfname);
+	printf("connecttion from host %s ,port %d,\n", inet_ntoa(forkbuf.dfaddr.sin_addr), ntohs(forkbuf.dfaddr.sin_port));
+	
+	
+	//
+	if(forkbuf.tag == 'b')
+	{
+		while(1)
+		{
+			printf("\n%s请求连接！是否同意(y or n)?\n");
+			ret = getchar();
+			getchar();
+			if(ret == 'y' || ret == 'Y')
+			{
+				break;
+			}
+			if(ret == 'n' || ret == 'N')
+			{
+				printf("关闭窗口\n");
+				return 0;
+			}
+			printf("输入有误,请重新输入\n");
+				
+		}	
+	//	printf("b.......\n");
+		newaddr = forkbuf.dfaddr;
+	}
+	
+	
+	len = sizeof(newaddr);
+	ret = sendto(udpfd, forkbuf.myname, 10, 0, (struct sockaddr*)&forkbuf.dfaddr, len);
+	if(ret == -1)
+	{
+		printf("0 sendto error\n");
+		close(udpfd);
+		return -1;
+	}
+
+	//
+	
+	if(forkbuf.tag == 'z')
+	{
+		printf("landing...\n");
+		ret = recvfrom(udpfd, buf, sizeof(buf), 0, (struct sockaddr*)&newaddr, &len);
+
+	}
+	
+	
+	printf("连接成功\n");
+	printf("开始聊天\n");
+	maxfd = fileno(stdin);
+	FD_ZERO(&set);
+	FD_SET(maxfd, &set);
+	FD_SET(udpfd, &set);
+	maxfd = maxfd > udpfd ? maxfd : udpfd;
+	while(1)
+	{
+		rset = set;
+		nfound = select(maxfd + 1, &rset, NULL, NULL, NULL);
+		if(nfound == -1)
+		{
+			if(errno == EINTR)
+			{
+				continue;
+			}
+			printf("select error\n");
+			close(udpfd);
+			return -1;
+		}
+		if(FD_ISSET(fileno(stdin), &rset))
+		{
+			fgets(buf, sizeof(buf), stdin);
+			buf[strlen(buf) - 1] = '\0';
+			ret = sendto(udpfd, buf, strlen(buf) + 1, 0, (struct sockaddr*)&newaddr, sizeof(newaddr));
+			if(ret == -1)
+			{
+				printf("sendto erro\n");
+				close(udpfd);
+				return -1;
+			}
+		}
+		if(FD_ISSET(udpfd, &rset))
+		{
+			len = sizeof(newaddr);
+			ret = recvfrom(udpfd, buf, sizeof(buf) - 1, 0, (struct sockaddr*)&newaddr, &len);
+			buf[ret] = '\0';
+			printf("\n%s:\n", forkbuf.dfname);
+			printf("\t%s\n", buf);
+		}
+	}
+}

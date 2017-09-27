@@ -1,0 +1,40 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+JumpToLine	server.c.html	/^function JumpToLine()$/;"	f
+LOGIN_DATA	treat.h	15;"	d
+OFFLINE_DATA	treat.h	18;"	d
+ONLINE_DATA	treat.h	17;"	d
+PANT_DATA	treat.h	19;"	d
+REGISTER_DATA	treat.h	16;"	d
+SER_PORT	server.c	3;"	d	file:
+TIME_PANT	treat.h	21;"	d
+_SERVER_H	server.h	2;"	d
+_TREAT_H	treat.h	2;"	d
+accaddr	treat.h	/^	struct sockaddr_in accaddr;	\/\/ip port	$/;"	m	struct:online	typeref:struct:online::sockaddr_in
+accfd	treat.h	/^	int accfd;	$/;"	m	struct:online
+account	treat.h	/^	char account[10];$/;"	m	struct:online
+account	treat.h	/^struct account$/;"	s
+add_online	treat.c	/^void add_online(int fd, struct protocol* datum)$/;"	f
+data	treat.h	/^	char data[1020];$/;"	m	struct:protocol
+head	treat.h	/^	short head;$/;"	m	struct:protocol
+len	treat.h	/^	short len;$/;"	m	struct:protocol
+linkhead	treat.c	/^struct online* linkhead = NULL;$/;"	v	typeref:struct:online
+login_treat	treat.c	/^void login_treat(int fd, struct protocol* datum)$/;"	f
+main	server.c	/^int main()$/;"	f
+next	treat.h	/^	struct online* next;$/;"	m	struct:online	typeref:struct:online::online
+olhead	treat.c	/^struct online* olhead = NULL;$/;"	v	typeref:struct:online
+online	treat.h	/^struct online				\/\/在线用户$/;"	s
+password	treat.h	/^	char password[10];$/;"	m	struct:account
+print_online	treat.c	/^void print_online()$/;"	f
+protocol	treat.h	/^struct protocol				\/\/协议结构体$/;"	s
+read_data	treat.c	/^int read_data(int fd)$/;"	f
+send_offline	treat.c	/^void send_offline(struct online* offline)$/;"	f
+test_pant	server.c	/^void test_pant()$/;"	f
+time	treat.h	/^	int time;$/;"	m	struct:online
+treat_pant	treat.c	/^void treat_pant(int fd)$/;"	f
+treat_register	treat.c	/^void treat_register(int fd, struct protocol* datum)$/;"	f
+username	treat.h	/^	char username[10];$/;"	m	struct:account
